@@ -6,3 +6,4 @@ plotly.express
 numpy
 glob
 openpyxl
+pathlib
