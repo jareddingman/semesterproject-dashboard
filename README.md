@@ -1,4 +1,4 @@
-# 💭: Hope Foundation Dashboard
+# NCS HOPE Foundation Dashboard
 
 A simple Streamlit app showing some relevant data.
 
