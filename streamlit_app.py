@@ -3,6 +3,8 @@ import pandas as pd
 import math
 from pathlib import Path
 
+#be sure to also import the requirements.txt in your terminal
+
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(page_title='Semester Project')
 
