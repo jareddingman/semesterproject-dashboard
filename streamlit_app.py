@@ -63,17 +63,17 @@ def get_gdp_data():
     return gdp_df
 
 gdp_df = get_gdp_data()
+df_initial = load_original_data()
+
 
 # -----------------------------------------------------------------------------
 # Draw the actual page
 
 # Set the title that appears at the top of the page.
 '''
-# :earth_americas: GDP dashboard
+# :thought_balloon: Semester Project
 
-Browse GDP data from the [World Bank Open Data](https://data.worldbank.org/) website. As you'll
-notice, the data only goes to 2022 right now, and datapoints for certain years are often missing.
-But it's otherwise a great (and did I mention _free_?) source of data.
+Welcome to my semester project for Tools for Quantitative Analysis. This app analyzes and simplifies data from the NCS HOPE foundation.
 '''
 
 # Add some spacing
