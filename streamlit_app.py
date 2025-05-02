@@ -142,7 +142,7 @@ if ReadyForReview:
     df = PendingRows
 
 tab1, tab2 = st.tabs(["Chart", "Dataframe"])
-tab1.line_chart(GrantReq, height=250)
+tab1.bar_chart(GrantReq, y = ['Grant Req Date'], height=250)
 tab2.dataframe(df, height=250, use_container_width=True)
 
 min_value = gdp_df['Year'].min()
