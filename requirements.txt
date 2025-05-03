@@ -2,9 +2,6 @@ streamlit
 pandas
 datetime
 regex
-plotly.express
 numpy
-glob
 openpyxl
-pathlib
 requests
