@@ -93,6 +93,10 @@ Welcome to my semester project for Tools for Quantitative Analysis. This app ana
 # Add some spacing
 ''
 ''
+'''
+This is an interactive graph/table that automatically shows the first 10 applicants that need review. Note that the "first" means the longest time since applied
+'''
+
 with st.container(border = True):
     users = st.multiselect("Users", AllUsers, default=FirstTenPending)
     ReadyForReview = st.toggle("Ready for Review")
