@@ -103,7 +103,6 @@ with st.container(border = True):
 if ReadyForReview:
     df = PendingRows
 
-tab1, tab2 = st.tabs(["Chart", "Dataframe"])
-tab1.bar_chart(GrantReq, y = ['Grant Req Date'], height=250)
-tab2.dataframe(df, height=250, use_container_width=True)
+tab1 = st.tabs(["Dataframe"])
+tab1.dataframe(df, height=250, use_container_width=True)
 
