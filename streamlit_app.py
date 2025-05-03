@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import openpyxl
 from datetime import datetime
-import regex as re
+import re
 import requests
 import numpy as np
 
