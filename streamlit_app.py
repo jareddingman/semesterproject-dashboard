@@ -103,6 +103,7 @@ with st.container(border = True):
 if ReadyForReview:
     df = PendingRows
 
-tab1 = st.tabs(["Dataframe"])
-tab1.dataframe(df, height=250, use_container_width=True)
+tab1, = st.tabs(["Dataframe"])
+with tab1:
+    st.dataframe(df, height=250, use_container_width=True)
 
