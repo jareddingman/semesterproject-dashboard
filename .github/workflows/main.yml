@@ -2,7 +2,7 @@ name: Update Data
 on:
   push:
     paths:
-    - data/UNO Service Learning Data Sheet De-Identified Version(1).xlsx
+    - 'data/**'
   schedule: 
   - cron: '0 0 1 * *'
 jobs:
