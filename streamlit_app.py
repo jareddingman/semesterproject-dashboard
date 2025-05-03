@@ -54,7 +54,7 @@ def findage(birthyear):
         if birthyear.strip() == "":
             return np.nan
         try:
-            birthyear = datetime.strptime(birthyear, "%m/%d/%Y").date()
+            borndate = datetime.strptime(birthyear, "%m/%d/%Y").date()
         except ValueError:
             return np.nan #the ValueError is useful for this
     elif isinstance(birthyear, datetime):
