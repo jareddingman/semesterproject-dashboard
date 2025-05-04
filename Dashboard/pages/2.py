@@ -5,7 +5,6 @@ from datetime import datetime
 import re
 import requests
 import numpy as np
-import plotly.express as px
 
 #be sure to also import the requirements.txt in your terminal
 
