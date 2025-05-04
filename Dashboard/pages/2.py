@@ -81,7 +81,7 @@ selectedDemo = st.multiselect("Group by:", demoOptions)
 
 if selectedDemo:
     filteredDf = dfDemo.dropna(subset=selectedDemo + ["Amount"])
-    grouped = filteredDf.groupby(selectedDemo)["Amount"]
+    grouped = filteredDf.groupby(selectedDemo).agg(['count', 'mean', 'sum'])["Amount"]
     st.dataframe(data = grouped, use_container_width=True)
 else:
     st.info("Please select at least one demographic.")
