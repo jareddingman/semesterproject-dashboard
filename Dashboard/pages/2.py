@@ -80,14 +80,14 @@ demoOptions = ["Distance/tx", "Gender", "Race", "Income", "Insurance Type", "Age
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
 
-dfDemo["Amount"] = (
-    dfDemo["Amount"]
-    .astype(str)
-    .str.replace(r"[\$,]", "", regex=True)  # Remove $ and commas
-)
+dfDemo["Amount"] = (dfDemo["Amount"].astype(str).str.replace(r"[\$,]", "", regex = True)
 dfDemo["Amount"] = pd.to_numeric(dfDemo["Amount"], errors = "coerce")
 
+
 if selectedDemo:
+    for col in selectedDemo:
+        dfDemo[col] = dfDemo[col].astype(str)
+        
     filteredDf = dfDemo.dropna(subset=selectedDemo + ["Amount"])
     grouped = filteredDf.groupby(selectedDemo).agg(['count', 'mean', 'sum'])["Amount"]
     st.dataframe(data = grouped, use_container_width=True)
