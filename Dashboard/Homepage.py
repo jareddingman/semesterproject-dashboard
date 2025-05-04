@@ -13,7 +13,7 @@ Welcome to my semester project for Tools for Quantitative Analysis. This app ana
 '''
 ''
 ''
-st.image(https://www.google.com/url?sa=i&url=https%3A%2F%2Fncshopefoundation.org%2F&psig=AOvVaw1PnlpsjwCM6cI4pHTsMfCF&ust=1746485108807000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPCDopfyio0DFQAAAAAdAAAAABAE)
+st.image(https://ncshopefoundation.org/wp-content/uploads/2023/05/footer-logo.webp)
 '''
 Please see the tabs located on the left of this page for some more interactive like:
 - Ready-to-review applicants
