@@ -76,18 +76,41 @@ def findage(birthyear):
     today = datetime.now().date()
     return today.year - borndate.year - ((today.month, today.day) < (borndate.month, borndate.day))
 
+def ageBrack(age):
+    if age in range(0, 18):
+        return "0-18"
+    if age in range(19, 28):
+        return "19-28"
+    if age in range(29, 39):
+        return "29-39"
+    if age in range(40, 55):
+        return "40-55"
+    if age in range(56, 61):
+        return "56-61"
+    if age in range(62, 67):
+        return "62-67"
+    if age in range(68, 73):
+        return "68-73"
+    if age in range(74, 79):
+        return "74-79"
+    if age in range(80, 85):
+        return "80-85"
+    if age in range(86, 150):
+        return "86+"
+
 df['Age'] = df['DOB'].apply(findage)
+df['Age Bracket'] = df['Age'].apply(ageBrack)
 
 #-------------------------------------------------------------------------
 #page2 goal: to collate amounts with demo info
 
-dfDemo = df.drop(columns=["App Year", "Pt State", "Pt Zip", "DOB", "Hispanic/Latino", "Grant Req Date"])
+dfDemo = df.drop(columns=["Age", "App Year", "Pt State", "Pt Zip", "DOB", "Hispanic/Latino", "Grant Req Date"])
 #note to Jared: the hispanic/latino column is not clean AT ALL. some responses were "yes", "hispanic/latino", "Hispanic", etc.
 index_to_drop = dfDemo[dfDemo['Request Status'] == 'Pending'].index
 dfDemo = dfDemo.drop(index_to_drop)
 
 
-demoOptions = ["Distance roundtrip/Tx", "Gender", "Race", "Insurance Type", "Age", "Marital Status", "Household Size"]
+demoOptions = ["Distance roundtrip/Tx", "Gender", "Race", "Insurance Type", "Age Bracket", "Marital Status", "Household Size"]
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
 
