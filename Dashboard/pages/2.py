@@ -119,7 +119,20 @@ df['Distance'] = df['Distance roundtrip/Tx'].apply(txBrack)
 
 #-------------------------------------------------------------------------
 #page2 goal: to collate amounts with demo info
-
+'''
+# Demographic Information
+'''
+''
+''
+'''
+Below is a dataframe tool which separates amounts that have been donated by NCS HOPE by various demographic factors. There are a few things to note:
+'''
+'''
+The "Count" column is the raw number of observations for a given metric.
+'''
+'''
+The "Total" and "Average" columns are with respect to amounts donated.
+'''
 dfDemo = df.drop(columns=["Age", "App Year", "Pt State", "Pt Zip", "DOB", "Hispanic/Latino", "Grant Req Date"])
 #note to Jared: the hispanic/latino column is not clean AT ALL. some responses were "yes", "hispanic/latino", "Hispanic", etc.
 index_to_drop = dfDemo[dfDemo['Request Status'] == 'Pending'].index
