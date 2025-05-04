@@ -17,13 +17,13 @@ uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 @st.cache_data
 def load_original_data():
     if uploadedFile == None:
-    url = 'https://raw.githubusercontent.com/jareddingman/semesterproject-dashboard/main/data/UNO%20Service%20Learning%20Data%20Sheet%20De-Identified%20Version(1).xlsx'
-    response = requests.get(url)
-    if response.status_code == 200:
-        return pd.read_excel(url, engine = "openpyxl")
-    else:
-        st.error("Failed to load data from GitHub.")
-        return None
+        url = 'https://raw.githubusercontent.com/jareddingman/semesterproject-dashboard/main/data/UNO%20Service%20Learning%20Data%20Sheet%20De-Identified%20Version(1).xlsx'
+        response = requests.get(url)
+        if response.status_code == 200:
+            return pd.read_excel(url, engine = "openpyxl")
+        else:
+            st.error("Failed to load data from GitHub.")
+            return None
 #-----------------------------------------------------------------------------
 df_initial = load_original_data()
 
