@@ -47,6 +47,7 @@ df['Insurance Type'] = df['Insurance Type'].replace((r'MEdicare|medicare'), valu
 df['Insurance Type'] = df['Insurance Type'].replace((r'Medicaid & Medicare'), value = "Medicare & Medicaid", regex = True)
 df['Insurance Type'] = df['Insurance Type'].replace((r'medicaid'), value = "Medicaid", regex = True)
 
+df['Gender'] = df['Gender'].replace((r'MAle|male'), value = "Male", regex = True)
 
 #---------------------------------------------------------
 
