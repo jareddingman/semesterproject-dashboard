@@ -97,9 +97,20 @@ def ageBrack(age):
         return "80-85"
     if age in range(86, 150):
         return "86+"
+def txBrack(dist):
+    if dist in range (0, 10):
+        return "0-10"
+    if dist in range (11, 25):
+        return "11-25"
+    if dist in range (26, 50):
+        return "26-50"
+    if dist in range (51, 1000):
+        return "51+"
+
 
 df['Age'] = df['DOB'].apply(findage)
 df['Age Bracket'] = df['Age'].apply(ageBrack)
+df['Distance'] = df['Distance roundtrip/Tx'].apply(txBrack)
 
 #-------------------------------------------------------------------------
 #page2 goal: to collate amounts with demo info
@@ -110,7 +121,7 @@ index_to_drop = dfDemo[dfDemo['Request Status'] == 'Pending'].index
 dfDemo = dfDemo.drop(index_to_drop)
 
 
-demoOptions = ["Distance roundtrip/Tx", "Gender", "Race", "Insurance Type", "Age Bracket", "Marital Status", "Household Size"]
+demoOptions = ["Distance", "Gender", "Race", "Insurance Type", "Age Bracket", "Marital Status", "Household Size"]
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
 
