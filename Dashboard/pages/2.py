@@ -80,8 +80,6 @@ demoOptions = ["Distance/tx", "Gender", "Race", "Income", "Insurance Type", "Age
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
 if selectedDemo:
-    dfnoNAN = dfDemo.dropna(subset=selectedDemo + ["Amount"]) #subset helps with NAN stuff
-    summary = dfnoNAN.groupby(selectedDemo)["Amount"].reset_index()
     st.dataframe(summary, use_container_width=True)
 else:
     st.info("Please select at least one demographic.")
