@@ -85,7 +85,7 @@ dfDemo["Amount"] = pd.to_numeric(dfDemo["Amount"], errors = "coerce")
 
 
 if selectedDemo:
-    grouped = filteredDf.groupby(selectedDemo).agg(['count', 'mean', 'sum'])["Amount"]
+    grouped = dfDemo.groupby(selectedDemo).agg(['count', 'mean', 'sum'])["Amount"]
     st.dataframe(data = grouped, use_container_width=True)
 else:
     st.info("Please select at least one demographic.")
