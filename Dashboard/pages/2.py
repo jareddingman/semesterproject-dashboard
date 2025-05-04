@@ -79,6 +79,8 @@ dfDemo = dfDemo.drop(index_to_drop)
 demoOptions = ["Distance/tx", "Gender", "Race", "Income", "Insurance Type", "Age", "Marital Status", "Household Size"]
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
+dfDemo["Amount"] = pd.to_numeric(dfDemo["Amount"], errors = "coerce")
+
 if selectedDemo:
     filteredDf = dfDemo.dropna(subset=selectedDemo + ["Amount"])
     grouped = filteredDf.groupby(selectedDemo).agg(['count', 'mean', 'sum'])["Amount"]
