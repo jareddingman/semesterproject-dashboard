@@ -5,14 +5,20 @@ st.set_page_config(
     page_icon="👋",
 )
 
-st.title("Main Page")
+st.title("Semester Project: Main Page")
 st.sidebar.success("Select a page above.")
 
-# if "my_input" not in st.session_state:
-#     st.session_state["my_input"] = ""
+'''
+Welcome to my semester project for Tools for Quantitative Analysis. This app analyzes and simplifies data from the NCS HOPE foundation. 
+'''
+''
+''
+'''
+Please see the tabs located on the left of this page for some more interactive like:
+- Ready-to-review applicants
+- Donations and Demographics
+- Patient application speeds
+- Patient fund usage
+- Executive summaries
+'''
 
-# my_input = st.text_input("Input a text here", st.session_state["my_input"])
-# submit = st.button("Submit")
-# if submit:
-#     st.session_state["my_input"] = my_input
-#     st.write("You have entered: ", my_input)
