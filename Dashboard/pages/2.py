@@ -40,6 +40,16 @@ df['Payment Method'] = df['Payment Method'].replace((r'Cc|cc|CC'), value = "CC",
 df['Payment Method'] = df['Payment Method'].replace((r'(PFA GC)|GC|gc|Gc'), value = "GC", regex = True)
 #Payment Method cleaning, only cleaned for CK CC and GC bc these were the only described data in the description doc
 
+#Page2---------------------------------------------------
+df['Insurance Type'] = df['Insurance Type'].replace((r'Uninsurred|Unisured'), value = "Uninsured", regex = True)
+df['Insurance Type'] = df['Insurance Type'].replace((r'Unknown'), value = "", regex = True)
+df['Insurance Type'] = df['Insurance Type'].replace((r'MEdicare|medicare'), value = "Medicare", regex = True)
+df['Insurance Type'] = df['Insurance Type'].replace((r'Medicaid & Medicare'), value = "Medicare & Medicaid", regex = True)
+df['Insurance Type'] = df['Insurance Type'].replace((r'medicaid'), value = "Medicaid", regex = True)
+
+
+#---------------------------------------------------------
+
 df['Distance roundtrip/Tx'] = df['Distance roundtrip/Tx'].replace((r'[a-zA-Z]+'), value = "", regex = True)
 #makes all distances numbers (might still need to convert to int or float)
 
@@ -76,7 +86,7 @@ index_to_drop = dfDemo[dfDemo['Request Status'] == 'Pending'].index
 dfDemo = dfDemo.drop(index_to_drop)
 
 
-demoOptions = ["Distance roundtrip/Tx", "Gender", "Race", "Total Household Gross Monthly Income", "Insurance Type", "Age", "Marital Status", "Household Size"]
+demoOptions = ["Distance roundtrip/Tx", "Gender", "Race", "Insurance Type", "Age", "Marital Status", "Household Size"]
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
 
