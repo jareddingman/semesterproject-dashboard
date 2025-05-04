@@ -94,7 +94,7 @@ if selectedDemo:
         mean = np.mean(groupDf["Amount"])
         result_rows.append(groupVals + (count, sum, mean))
     result_columns = selectedDemo + ["Count", "Total", "Average"]
-    result_df = pd.Dataframe(result_rows, column = result_columns)
+    result_df = pd.DataFrame(result_rows, column = result_columns)
     st.dataframe(data = result_df, use_container_width=True)
 else:
     st.info("Please select at least one demographic.")
