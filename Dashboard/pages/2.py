@@ -80,7 +80,7 @@ demoOptions = ["Distance/tx", "Gender", "Race", "Income", "Insurance Type", "Age
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
 
-dfDemo["Amount"] = (dfDemo["Amount"].astype(str).str.replace(r"[\$,]", "", regex = True)
+dfDemo["Amount"] = dfDemo["Amount"].astype(str).str.replace(r"[\$,]", "", regex = True)
 dfDemo["Amount"] = pd.to_numeric(dfDemo["Amount"], errors = "coerce")
 
 
