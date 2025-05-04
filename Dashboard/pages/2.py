@@ -79,6 +79,12 @@ dfDemo = dfDemo.drop(index_to_drop)
 demoOptions = ["Distance/tx", "Gender", "Race", "Income", "Insurance Type", "Age", "Marital Status", "Household Size"]
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
+
+dfDemo["Amount"] = (
+    dfDemo["Amount"]
+    .astype(str)
+    .str.replace(r"[\$,]", "", regex=True)  # Remove $ and commas
+)
 dfDemo["Amount"] = pd.to_numeric(dfDemo["Amount"], errors = "coerce")
 
 if selectedDemo:
