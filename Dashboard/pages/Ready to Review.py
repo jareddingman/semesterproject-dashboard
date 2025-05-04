@@ -85,16 +85,15 @@ FirstTenPending = PendingUsers[:10]
 
 # Set the title that appears at the top of the page.
 '''
-# :thought_balloon: Semester Project
+# :thought_balloon: Ready to Review Applicants
 
-Welcome to my semester project for Tools for Quantitative Analysis. This app analyzes and simplifies data from the NCS HOPE foundation.
 '''
 
 # Add some spacing
 ''
 ''
 '''
-This is an interactive graph/table that automatically shows the first 10 applicants that need review. Note that the "first" means the longest time since applied
+This is an interactive table that (when pressed with the 'ready to review' button) shows the applicants that are 'pending' review. Note that graph shos the first 10 applicants needing review by default.
 '''
 
 with st.container(border = True):
