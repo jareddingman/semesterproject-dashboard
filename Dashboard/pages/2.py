@@ -49,6 +49,11 @@ df['Insurance Type'] = df['Insurance Type'].replace((r'medicaid'), value = "Medi
 
 df['Gender'] = df['Gender'].replace((r'MAle|male'), value = "Male", regex = True)
 
+df['Marital Status'] = df['Marital Status'].replace((r'married'), value = "Married", regex = True)
+df['Marital Status'] = df['Marital Status'].replace((r'single|SIngle'), value = "Single", regex = True)
+df['Marital Status'] = df['Marital Status'].replace((r'Seperated|separated'), value = "Separated", regex = True)
+df['Marital Status'] = df['Marital Status'].replace((r'MIssing'), value = "", regex = True)
+
 #---------------------------------------------------------
 
 df['Distance roundtrip/Tx'] = df['Distance roundtrip/Tx'].replace((r'[a-zA-Z]+'), value = "", regex = True)
