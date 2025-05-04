@@ -80,7 +80,9 @@ demoOptions = ["Distance/tx", "Gender", "Race", "Income", "Insurance Type", "Age
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
 if selectedDemo:
-    st.dataframe(summary, use_container_width=True)
+    filteredDf = dfDemo.dropna(subset=selectedDemo + ["Amount"])
+    grouped = filteredDf.groupby(selectedDemo)["Amount"]
+    st.dataframe(data = grouped, use_container_width=True)
 else:
     st.info("Please select at least one demographic.")
 
