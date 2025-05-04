@@ -15,7 +15,7 @@ Welcome to my semester project for Tools for Quantitative Analysis. This app ana
 ''
 st.image("https://ncshopefoundation.org/wp-content/uploads/2023/05/footer-logo.webp")
 '''
-Please see the tabs located on the left of this page for some more interactive like:
+Please see the tabs located on the left of this page for:
 - Ready-to-review applicants
 - Donations and Demographics
 - Patient application speeds
