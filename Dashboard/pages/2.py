@@ -92,7 +92,7 @@ if selectedDemo:
         count = np.count_nonzero(~np.isnan(groupDf["Amount"]))
         sum = np.sum(groupDf["Amount"])
         mean = np.mean(groupDf["Amount"])
-        result_rows.append(groupVals + (count, sum, mean)
+        result_rows.append(groupVals + (count, sum, mean))
     result_columns = selectedDemo + ["Count", "Total", "Average"]
     result_df = pd.Dataframe(result_rows, column = result_columns)
     st.dataframe(data = result_df, use_container_width=True)
