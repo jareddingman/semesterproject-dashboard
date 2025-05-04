@@ -66,3 +66,23 @@ def findage(birthyear):
     return today.year - borndate.year - ((today.month, today.day) < (borndate.month, borndate.day))
 
 df['Age'] = df['DOB'].apply(findage)
+
+#-------------------------------------------------------------------------
+#page2 goal: to collate amounts with demo info
+
+dfDemo = df.drop(columns=["App Year", "Pt State", "Pt Zip", "DOB", "Hispanic/Latino", "Grant Req Date"])
+#note to Jared: the hispanic/latino column is not clean AT ALL. some responses were "yes", "hispanic/latino", "Hispanic", etc.
+index_to_drop = dfDemo[dfDemo['Request Status'] == 'Pending'].index
+dfDemo = dfDemo.drop(index_to_drop)
+
+
+demoOptions = ["Distance/tx", "Gender", "Race", "Income", "Insurance Type", "Age", "Marital Status", "Household Size"]
+selectedDemo = st.multiselect("Group by:", demoOptions)
+
+if selectedDemo:
+    dfnoNAN = dfDemo.dropna(subset=selectedDemo + ["Amount"]) #subset helps with NAN stuff
+    summary = dfnoNAN.groupby(selectedDemo)["Amount"].agg(['count', 'mean', 'sum']).reset_index()
+    st.dataframe(summary, use_container_width=True)
+else:
+    st.info("Please select at least one demographic.")
+
