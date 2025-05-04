@@ -93,7 +93,7 @@ FirstTenPending = PendingUsers[:10]
 ''
 ''
 '''
-This is an interactive table that (when pressed with the 'ready to review' button) shows the applicants that are 'pending' review. Note that graph shos the first 10 applicants needing review by default.
+This is an interactive table that (when pressed with the 'ready to review' button) shows the applicants that are 'pending' review. Note that graph shows the first 10 applicants needing review by default.
 '''
 
 with st.container(border = True):
@@ -105,3 +105,7 @@ if ReadyForReview:
 tab1, = st.tabs(["Dataframe"])
 with tab1:
     st.dataframe(df, height=250, use_container_width=True)
+
+'''
+To look at a specific applicant, type in the Patient ID# in the field above.
+'''
