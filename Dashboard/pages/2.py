@@ -76,7 +76,7 @@ index_to_drop = dfDemo[dfDemo['Request Status'] == 'Pending'].index
 dfDemo = dfDemo.drop(index_to_drop)
 
 
-demoOptions = ["Distance/tx", "Gender", "Race", "Income", "Insurance Type", "Age", "Marital Status", "Household Size"]
+demoOptions = ["Distance roundtrip/Tx", "Gender", "Race", "Total Household Gross Monthly Income", "Insurance Type", "Age", "Marital Status", "Household Size"]
 selectedDemo = st.multiselect("Group by:", demoOptions)
 
 
