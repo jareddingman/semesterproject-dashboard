@@ -85,10 +85,6 @@ dfDemo["Amount"] = pd.to_numeric(dfDemo["Amount"], errors = "coerce")
 
 
 if selectedDemo:
-    for col in selectedDemo:
-        dfDemo[col] = dfDemo[col].astype(str)
-        
-    filteredDf = dfDemo.dropna(subset=selectedDemo + ["Amount"])
     grouped = filteredDf.groupby(selectedDemo).agg(['count', 'mean', 'sum'])["Amount"]
     st.dataframe(data = grouped, use_container_width=True)
 else:
