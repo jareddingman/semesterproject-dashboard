@@ -85,8 +85,17 @@ dfDemo["Amount"] = pd.to_numeric(dfDemo["Amount"], errors = "coerce")
 
 
 if selectedDemo:
-    grouped = dfDemo.groupby(selectedDemo)["Amount"]
-    st.dataframe(data = grouped, use_container_width=True)
+    result_rows = []
+    for groupVals, groupDf in dfDemo.groupby(selectedDemo):
+        if not isinstance(groupVals, tuple):
+            groupVals = (groupVals,)
+        count = np.count_nonzero(~np.isnan(groupDf["Amount"]))
+        sum = np.sum(groupDf["Amount"])
+        mean = np.mean(groupDf["Amount"])
+        result_rows.append(groupVals + (count, sum, mean)
+    result_columns = selectedDemo + ["Count", "Total", "Average"]
+    result_df = pd.Dataframe(result_rows, column = result_columns)
+    st.dataframe(data = result_df, use_container_width=True)
 else:
     st.info("Please select at least one demographic.")
 
