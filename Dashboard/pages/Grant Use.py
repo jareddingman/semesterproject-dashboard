@@ -77,5 +77,5 @@ st.subheader("Bar Chart")
 barChart = px.bar(dfGrant.groupby('Type of Assistance (CLASS)')['Total Balance'].mean().reset_index(), x = 'Type of Assistance (CLASS)', y = 'Total Balance', title = 'Grant rates by CLASS', labels = {'Type of Assistance (CLASS)': 'Type of Assistance', 'Total Balance': 'Current Balance'})
 st.plotly_chart('barChart')
 
-st.subheader(Line Chart)
+st.subheader("Line Chart")
 st.write("TO DO for Jared: Edit Deomgraphics page in order to reflect 'together' total and not 'Amount', Finish this page and 5th page, Make sure autoflows work")
