@@ -62,6 +62,9 @@ together = pd.merge(newBalance, amountSum, on = 'Patient ID#')
 
 together['Total Balance'] = together['Remaining Balance'] - together['Amount']
 
+together = together[['Patient ID#', 'Total Balance']]
+dfGrant = pd.merge(dfGrant, together, on = 'Patient ID#', how = 'left')
+
 #writing the app------------------------------------------------
 
 st.title("Grant Use Metrics")
@@ -71,7 +74,7 @@ st.subheader("Summary Statistics")
 st.write(together['Total Balance'].describe())
 
 st.subheader("Bar Chart")
-barChart = px.bar(together.groupby('Type of Assistance (CLASS)')['Total Balance'].mean().reset_index(), x = 'Type of Assistance (CLASS)', y = 'Total Balance', title = 'Grant rates by CLASS', labels = {'Type of Assistance (CLASS)': 'Type of Assistance', 'Total Balance': 'Current Balance'})
+barChart = px.bar(dfGrant.groupby('Type of Assistance (CLASS)')['Total Balance'].mean().reset_index(), x = 'Type of Assistance (CLASS)', y = 'Total Balance', title = 'Grant rates by CLASS', labels = {'Type of Assistance (CLASS)': 'Type of Assistance', 'Total Balance': 'Current Balance'})
 
 st.subheader("Line Chart")
 st.write("TO DO for Jared: Edit Deomgraphics page in order to reflect 'together' total and not 'Amount', Finish this page and 5th page, Make sure autoflows work")
