@@ -60,4 +60,8 @@ together = pd.merge(newBalance, amountSum, on = 'Patient ID#')
 
 together['Total Balance'] = together['Remaining Balance'] - together['Amount']
 
+st.title("Grant Use Metrics")
+st.write("Note that these metrics are NOT perfect. For better/more accurate results, the Excel/csv needs to have consistent 'Amount' and 'Remaining Balance' columns that are properly kept track of by Patient ID#.")
 
+st.subheader("Summary Statistics")
+st.write(together['Total Balance'].describe())
