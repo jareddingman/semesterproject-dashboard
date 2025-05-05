@@ -43,6 +43,10 @@ df['Payment Submitted?'] = pd.to_datetime(df['PaymentS Submitted?'], errors = 'c
 df = df.dropna(subset = ['Grant Req Date', 'Payment Submitted?'])
 
 df['Response Time'] = (df['Payment Submitted?'] - df['Grant Req Date']).dt.days
+
+st.subheader("Histogram of Application Speed")
+histogram = px.histogram(df, x = 'Response Time', nbins = 20, title = "App. Speed")
+st.plotly_chart(histogram)
                          
 
 st.write("This is still under construction! :building_construction:")
