@@ -5,7 +5,7 @@ from datetime import datetime
 import re
 import requests
 import numpy as np
-import plotly as px
+import plotly.express as px
 
 #be sure to also import the requirements.txt in your terminal
 #I have new appreciation for proper data descriptions
@@ -69,6 +69,9 @@ st.write("Note that these metrics are NOT perfect. For better/more accurate resu
 
 st.subheader("Summary Statistics")
 st.write(together['Total Balance'].describe())
+
+st.subheader("Bar Chart")
+barChart = px.bar(together.groupby('Type of Assistance (CLASS)')['Total Balance'].mean().reset_index(), x = 'Type of Assistance (CLASS)', y = 'Total Balance', title = 'Grant rates by CLASS', labels = {'Type of Assistance (CLASS)': 'Type of Assistance', 'Total Balance': 'Current Balance'})
 
 st.subheader("Line Chart")
 st.write("TO DO for Jared: Edit Deomgraphics page in order to reflect 'together' total and not 'Amount', Finish this page and 5th page, Make sure autoflows work")
