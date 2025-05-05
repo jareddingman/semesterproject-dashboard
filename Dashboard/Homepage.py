@@ -2,10 +2,9 @@ import streamlit as st
 
 st.set_page_config(
     page_title="Semester Project",
-    page_icon="👋",
-)
+    page_icon=":leaves:")
 
-st.title("Semester Project: Main Page")
+st.title("Semester Project: Main Page :leaves:")
 st.sidebar.success("Select a page above.")
 
 '''
