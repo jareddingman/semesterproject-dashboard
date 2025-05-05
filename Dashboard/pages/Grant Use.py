@@ -49,6 +49,8 @@ dfGrant = dfGrant.drop(index_to_drop_denied)
 dfGrant['Type of Assistance (CLASS)'] = dfGrant['Type of Assistance (CLASS)'].astype(str).str.strip()
 dfGrant = dfGrant.replace(regex=r'Utilities |utilities|utilities | Utilities| utilities', value = "Utilities")
 dfGrant = dfGrant.replace(regex=r'Phone/internet', value = "Phone/Internet")
+dfGrant = dfGrant.replace(regex=r'Food/groceries', value = "Food/Groceries")
+
 
 dfGrant["Amount"] = dfGrant["Amount"].astype(str).str.replace(r"[\$,]", "", regex = True)
 dfGrant["Amount"] = pd.to_numeric(dfGrant["Amount"], errors = "coerce")
