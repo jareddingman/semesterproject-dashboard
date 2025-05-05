@@ -71,6 +71,4 @@ st.subheader("Summary Statistics")
 st.write(together['Total Balance'].describe())
 
 st.subheader("Line Chart")
-st.write("TO DO for Jared: Edit Deomgraphics page in order to reflect 'together' total and not 'Amount'
-         "Finish this page and 5th page"
-         "Make sure autoflows work")
+st.write("TO DO for Jared: Edit Deomgraphics page in order to reflect 'together' total and not 'Amount', Finish this page and 5th page, Make sure autoflows work")
