@@ -58,7 +58,7 @@ st.plotly_chart(histogram)
 Hover over the graph with your mouse to see more information!
 '''
 st.subheader("Box Plot of Days to Payment")
-fig_box = px.box(df, x='Days to Payment', title='Box Plot of Days to Payment')
+fig_box = px.box(df, x='Response Time', title='Box Plot of Days to Payment')
 st.plotly_chart(fig_box)                       
 
 st.write("This is still under construction! :building_construction:")
