@@ -43,6 +43,11 @@ df['Payment Submitted?'] = pd.to_datetime(df['Payment Submitted?'], errors = 'co
 df = df.dropna(subset = ['Grant Req Date', 'Payment Submitted?'])
 
 df['Response Time'] = (df['Payment Submitted?'] - df['Grant Req Date']).dt.days
+st.title("Application Response Speed")
+'''
+These data were pulled from 'Payment Submitted?' and 'Grant Req Date' columns in the csv/Excel file.
+Only observations with dates included in BOTH these columns are analyzed.
+'''
 
 st.subheader("Histogram of Application Speed")
 histogram = px.histogram(df, x = 'Response Time', nbins = 20, labels = {'Response Time': 'Response Time (days)', 'count': 'Count'}, title = "Application Speed")
