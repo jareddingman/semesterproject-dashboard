@@ -19,7 +19,7 @@ uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 #gotta finally connect the data folder to analysis
 def getGiturl(owner: str, repo: str, folder: str):
     contents_api = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
-    resp = request.get(contents_api)
+    resp = requests.get(contents_api)
     resp.raise_for_status()
     items = resp.json()
 
