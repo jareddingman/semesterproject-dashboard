@@ -89,7 +89,7 @@ barChart = px.bar(dfGrant.groupby('Type of Assistance (CLASS)')['Total Balance']
 st.plotly_chart(barChart)
 
 st.subheader("Payment Distributions")
-colsGraph = dfGrant['Amount', 'Total Balance', 'Remaining Balance']
+colsGraph = ['Amount', 'Total Balance', 'Remaining Balance']
 selectedCols = []
 for col in colsGraph:
     if st.checkbox(f"Show Distribution for: {col}"):
