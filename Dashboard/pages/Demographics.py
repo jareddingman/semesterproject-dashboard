@@ -55,6 +55,13 @@ df['Marital Status'] = df['Marital Status'].replace((r'single|SIngle'), value = 
 df['Marital Status'] = df['Marital Status'].replace((r'Seperated|separated'), value = "Separated", regex = True)
 df['Marital Status'] = df['Marital Status'].replace((r'MIssing'), value = "", regex = True)
 
+df['Language'] = df['Language'].replace((r'English '), value = "English", regex = True)
+df['Language'] = df['Language'].replace((r'English, Spanish'), value = "", regex = True)
+df['Language'] = df['Language'].replace((r'Karen'), value = "", regex = True)
+df['Language'] = df['Language'].replace((r'somali'), value = "Somali", regex = True)
+
+
+
 #---------------------------------------------------------
 
 df['Distance roundtrip/Tx'] = df['Distance roundtrip/Tx'].replace((r'[a-zA-Z]+'), value = "", regex = True)
