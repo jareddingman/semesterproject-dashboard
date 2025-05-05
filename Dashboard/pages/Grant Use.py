@@ -5,8 +5,10 @@ from datetime import datetime
 import re
 import requests
 import numpy as np
+import plotly as px
 
 #be sure to also import the requirements.txt in your terminal
+#I have new appreciation for proper data descriptions
 
 #Create a page showing how many patients did not use their full grant amount in a given application year. 
 #What are the average amounts given by assistance type? This would help us in terms of budgeting and determining future programming needs.
@@ -35,7 +37,7 @@ df = df_initial.replace(regex=r'N/A', value = "")
 
 print(df.columns)
 
-columnNames = ['Patient ID#', 'Remaining Balance', 'Request Status', 'Amount']
+columnNames = ['Patient ID#', 'Remaining Balance', 'Request Status', 'Amount', 'Type of Assistance (CLASS)']
 dfGrant = df[columnNames]
 
 index_to_drop_pending = dfGrant[dfGrant['Request Status'] == 'Pending'].index
@@ -60,8 +62,15 @@ together = pd.merge(newBalance, amountSum, on = 'Patient ID#')
 
 together['Total Balance'] = together['Remaining Balance'] - together['Amount']
 
+#writing the app------------------------------------------------
+
 st.title("Grant Use Metrics")
 st.write("Note that these metrics are NOT perfect. For better/more accurate results, the Excel/csv needs to have consistent 'Amount' and 'Remaining Balance' columns that are properly kept track of by Patient ID#.")
 
 st.subheader("Summary Statistics")
 st.write(together['Total Balance'].describe())
+
+st.subheader("Line Chart")
+st.write("TO DO for Jared: Edit Deomgraphics page in order to reflect 'together' total and not 'Amount'
+         "Finish this page and 5th page"
+         "Make sure autoflows work")
