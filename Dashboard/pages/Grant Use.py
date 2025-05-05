@@ -34,6 +34,7 @@ df_initial = load_original_data()
 
 df = df_initial.replace(regex=r'(M|m)issing', value="")
 df = df_initial.replace(regex=r'N/A', value = "")
+df['Type of Assistance (CLASS)'] = df['Type of Assistance (CLASS)'].astype(str)
 df = df_initial.replace(regex=r'Utilities |utilities|utilities | Utilities| utilities', value = "Utilities")
 
 
