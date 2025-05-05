@@ -34,9 +34,6 @@ df_initial = load_original_data()
 
 df = df_initial.replace(regex=r'(M|m)issing', value="")
 df = df_initial.replace(regex=r'N/A', value = "")
-df['Type of Assistance (CLASS)'] = df['Type of Assistance (CLASS)'].astype(str).str.strip()
-df = df_initial.replace(regex=r'Utilities |utilities|utilities | Utilities| utilities', value = "Utilities")
-df = df_initial.replace(regex=r'Phone/internet', value = "Phone/Internet")
 
 
 print(df.columns)
@@ -48,6 +45,10 @@ index_to_drop_pending = dfGrant[dfGrant['Request Status'] == 'Pending'].index
 dfGrant = dfGrant.drop(index_to_drop_pending)
 index_to_drop_denied = dfGrant[dfGrant['Request Status'] == 'Denied'].index
 dfGrant = dfGrant.drop(index_to_drop_denied)
+
+dfGrant['Type of Assistance (CLASS)'] = dfGrant['Type of Assistance (CLASS)'].astype(str).str.strip()
+dfGrant = dfGrant.replace(regex=r'Utilities |utilities|utilities | Utilities| utilities', value = "Utilities")
+dfGrant = dfGrant.replace(regex=r'Phone/internet', value = "Phone/Internet")
 
 dfGrant["Amount"] = dfGrant["Amount"].astype(str).str.replace(r"[\$,]", "", regex = True)
 dfGrant["Amount"] = pd.to_numeric(dfGrant["Amount"], errors = "coerce")
