@@ -4,16 +4,10 @@ A simple Streamlit app showing some relevant data.
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://thisismainpage.streamlit.app/)
 
-### How to run it on your own machine
+### This repo is designed to update in two ways:
 
-1. Install the requirements
+1. Whenever data is changed/pushed in the 'data' folder
 
-   ```
-   $ pip install -r requirements.txt
-   ```
 
-2. Run the app
+2. On the first of everymonth
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
