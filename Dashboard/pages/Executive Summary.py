@@ -68,7 +68,7 @@ def loadData():
 
 
 df = loadData()
-st.write(f"Loaded {len(df)} rows from "{uploadedFile.name if uploadedFile else 'GitHub data folder'}".")
+st.write(f"Loaded {len(df)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
 
 
 
