@@ -77,6 +77,10 @@ dfGrant = pd.merge(dfGrant, together, on = 'Patient ID#', how = 'left')
 st.title("Grant Use Metrics")
 st.write("Note that these metrics are NOT perfect. For better/more accurate results, the Excel/csv needs to have consistent 'Amount' and 'Remaining Balance' columns that are properly kept track of by Patient ID#.")
 
+'''
+The metric 'Total Balance' specifically refers to the amount given to a unique Patient ID# minus the TOTAL of all 'Amount' instances by that same Patient ID#.
+'''
+
 st.subheader("Summary Statistics")
 st.write(together['Total Balance'].describe())
 
