@@ -60,7 +60,7 @@ def loadData():
     repo = "semesterproject-dashboard"
     folder = "data"
 
-    download_url = get_latest_github_download_url(owner, repo, folder)
+    download_url = getGiturl(owner, repo, folder)
     if download_url.lower().endswith("xlsx"):
         return pd.read_excel(download_url, engine = "openpyxl")
     else:
