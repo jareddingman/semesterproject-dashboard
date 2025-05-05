@@ -37,4 +37,4 @@ print(df)
 #made all Missing or missing becaome nan, 0s will be used for dummy variables like hispanic/not
 
 
-st.write("This is still under construction!")
+st.write("This is still under construction! :building_construction:")
