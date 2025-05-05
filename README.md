@@ -2,7 +2,7 @@
 
 A simple Streamlit app showing some relevant data.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://github.com/jareddingman/semesterproject-dashboard/blob/00908458185181ae98bd613fa60da9ae0d06318e/streamlit_app.py/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://thisismainpage.streamlit.app/)
 
 ### How to run it on your own machine
 
