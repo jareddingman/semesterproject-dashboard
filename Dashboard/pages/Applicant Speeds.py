@@ -39,7 +39,7 @@ print(df)
 #made all Missing or missing becaome nan, 0s will be used for dummy variables like hispanic/not
 
 df['Grant Req Date'] = pd.to_datetime(df['Grant Req Date'], errors = 'coerce')
-df['Payment Submitted?'] = pd.to_datetime(df['PaymentS Submitted?'], errors = 'coerce')
+df['Payment Submitted?'] = pd.to_datetime(df['Payment Submitted?'], errors = 'coerce')
 df = df.dropna(subset = ['Grant Req Date', 'Payment Submitted?'])
 
 df['Response Time'] = (df['Payment Submitted?'] - df['Grant Req Date']).dt.days
