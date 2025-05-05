@@ -45,8 +45,12 @@ df = df.dropna(subset = ['Grant Req Date', 'Payment Submitted?'])
 df['Response Time'] = (df['Payment Submitted?'] - df['Grant Req Date']).dt.days
 
 st.subheader("Histogram of Application Speed")
-histogram = px.histogram(df, x = 'Response Time', nbins = 20, title = "App. Speed")
+histogram = px.histogram(df, x = 'Response Time', nbins = 20, labels = {
+    'Response time': 'Response time (in days)'}, title = "App. Speed")
 st.plotly_chart(histogram)
+'''
+Hover over the graph with your mouse to see more information!
+'''
                          
 
 st.write("This is still under construction! :building_construction:")
