@@ -8,6 +8,8 @@ import numpy as np
 
 #be sure to also import the requirements.txt in your terminal
 
+#note to make to NCS HOPE: Update data entry in a format that allows for multiple choice so that English english and ENglish aren't a thing
+
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(page_title='Semester Project')
 uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
