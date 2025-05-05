@@ -48,6 +48,8 @@ st.title("Application Response Speed")
 These data were pulled from 'Payment Submitted?' and 'Grant Req Date' columns in the csv/Excel file.
 Only observations with dates included in BOTH these columns are analyzed.
 '''
+st.subheader("Summary Statistics")
+st.write(df['Response Time'].describe())
 
 st.subheader("Histogram of Application Speed")
 histogram = px.histogram(df, x = 'Response Time', nbins = 20, labels = {'Response Time': 'Response Time (days)', 'count': 'Count'}, title = "Application Speed")
@@ -55,6 +57,8 @@ st.plotly_chart(histogram)
 '''
 Hover over the graph with your mouse to see more information!
 '''
-                         
+st.subheader("Box Plot of Days to Payment")
+fig_box = px.box(df, x='Days to Payment', title='Box Plot of Days to Payment')
+st.plotly_chart(fig_box)                       
 
 st.write("This is still under construction! :building_construction:")
