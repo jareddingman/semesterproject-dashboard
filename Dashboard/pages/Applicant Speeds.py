@@ -60,5 +60,4 @@ Hover over the graph with your mouse to see more information!
 st.subheader("Box Plot of Days to Payment")
 fig_box = px.box(df, x='Response Time', title='Box Plot of Days to Payment')
 st.plotly_chart(fig_box)                       
-
-st.write("This is still under construction! :building_construction:")
+st.write("Hover over this graph too to see more information!")
