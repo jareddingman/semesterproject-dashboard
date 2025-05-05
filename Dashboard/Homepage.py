@@ -27,7 +27,7 @@ Please see the tabs located on the left of this page for:
 '''
 IMPORTANT TO NOTE: This app uses data from an associated GitHub Repository. To see it, press the rocket emoji below:
 '''
-st.link("🚀", "https://github.com/jareddingman/semesterproject-dashboard/tree/main")
+st.link_button("🚀", "https://github.com/jareddingman/semesterproject-dashboard/tree/main")
 '''
 This app also allows file uploading for easy access. Please note that this method is more prone to errors made by spelling/data entry issues.
 '''
