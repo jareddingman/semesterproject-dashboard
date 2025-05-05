@@ -93,7 +93,7 @@ st.markdown("### Fitler Options")
 appYears = sorted(dfGrant['App Year'].dropna().unique())
 selectedApp = st.multiselect("Select App Year(s):", appYears, default = appYears)
 
-assistance = sorted(dfGrant['Type of Assistance (CLASS)'].dropna.unique())
+assistance = sorted(dfGrant['Type of Assistance (CLASS)'].dropna().unique())
 selectedAssist = st.multiselect("Select Assistance Type(s):", assistance, default = assistance)
 
 filteredDf = dfGrant[dfGrant['App Year'].isin(selectedApp) & dfGrant['Type of Assistance (CLASS)'].isin(selectedAssist)]
