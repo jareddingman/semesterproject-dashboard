@@ -39,9 +39,7 @@ def getGiturl(owner: str, repo: str, folder: str):
         if not commits:
             continue
 
-        commit_date = datetime.fromisoformat(
-            commits[0]["commit"]["comitter"]["date"].replace("Z", "")
-        )
+        commit_date = datetime.fromisoformat(commits[0]["commit"]["committer"]["date"].replace("Z", ""))
         if latest_date is None or commit_date > latest_date:
             latest_date = commit_date
             latest_url = item["download_url"]
