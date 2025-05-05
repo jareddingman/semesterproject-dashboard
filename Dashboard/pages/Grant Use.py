@@ -38,7 +38,7 @@ df = df_initial.replace(regex=r'N/A', value = "")
 
 print(df.columns)
 
-columnNames = ['Patient ID#', 'Remaining Balance', 'Request Status', 'Amount', 'Type of Assistance (CLASS)']
+columnNames = ['App Year', 'Patient ID#', 'Remaining Balance', 'Request Status', 'Amount', 'Type of Assistance (CLASS)']
 dfGrant = df[columnNames]
 
 index_to_drop_pending = dfGrant[dfGrant['Request Status'] == 'Pending'].index
@@ -83,19 +83,30 @@ The metric 'Total Balance' specifically refers to the amount given to a unique P
 
 st.subheader("Summary Statistics")
 st.write(together['Total Balance'].describe())
-
 st.subheader("Bar Chart")
 barChart = px.bar(dfGrant.groupby('Type of Assistance (CLASS)')['Total Balance'].mean().reset_index(), x = 'Type of Assistance (CLASS)', y = 'Total Balance', title = 'Grant rates by CLASS(avgs)', labels = {'Type of Assistance (CLASS)': 'Type of Assistance', 'Total Balance': 'Current Balance'})
 st.plotly_chart(barChart)
 
 st.subheader("Payment Distributions")
+
+st.markdown("### Fitler Options")
+appYears = sorted(dfGrant['App Year'].dropna().unique())
+selectedApp = st.multiselect("Select App Year(s):", appYears, default = appYears)
+
+assistance = sorted(dfGrant['Type of Assistance (CLASS)'].dropna.unique())
+selectedAssist = st.multiselect("Select Assistance Type(s):", assistance, default = assistance)
+
+filteredDf = dfGrant[dfGrant['App Year'].isin(selectedApp) & dfGrant['Type of Assistance (CLASS)'].isin(selectedAssist)]
+
+
+
 colsGraph = ['Amount', 'Total Balance', 'Remaining Balance']
 selectedCols = []
 for col in colsGraph:
     if st.checkbox(f"Show Distribution for: {col}"):
         selectedCols.append(col)
 for col in selectedCols:
-    dist = px.histogram(dfGrant, x = col, nbins = 20, histnorm = 'probability density', title = f'Distribution of {col}', marginal = 'rug')
+    dist = px.histogram(filteredDf, x = col, nbins = 20, histnorm = 'probability density', title = f'Distribution of {col}', marginal = 'rug')
     st.plotly_chart(dist, use_container_width = True)
 
 st.write("TO DO for Jared: Edit Deomgraphics page in order to reflect 'together' total and not 'Amount', Finish this page and 5th page, Make sure autoflows work")
