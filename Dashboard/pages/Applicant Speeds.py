@@ -5,6 +5,7 @@ from datetime import datetime
 import re
 import requests
 import numpy as np
+import plotly.express as px
 
 #be sure to also import the requirements.txt in your terminal
 
@@ -28,13 +29,20 @@ def load_original_data():
 df_initial = load_original_data()
 
 #my addition from positron (not template)
-df = df_initial.drop(columns=["App Year", "Remaining Balance", "Request Status", "Payment Submitted?", "Pt City", "Pt State", "Pt Zip", "Language", "DOB", "Marital Status", "Gender", "Race", "Hispanic/Latino", "Insurance Type", "Household Size", "Total Household Gross Monthly Income", "Distance roundtrip/Tx", "Type of Assistance (CLASS)",  "Amount", "Payment Method", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
+df = df_initial.drop(columns=["Patient ID#", "App Year", "Remaining Balance", "Request Status", "Pt City", "Pt State", "Pt Zip", "Language", "DOB", "Marital Status", "Gender", "Race", "Hispanic/Latino", "Insurance Type", "Household Size", "Total Household Gross Monthly Income", "Distance roundtrip/Tx", "Type of Assistance (CLASS)",  "Amount", "Payment Method", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
 print(df.columns)
+#drop everything except for Grant Req Date, and Payment Submitted
 
 df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
 print(df)
 #made all Missing or missing becaome nan, 0s will be used for dummy variables like hispanic/not
 
+df['Grant Req Date'] = pd.to_datetime(df['Grant Req Date'], errors = 'coerce')
+df['Payment Submitted?'] = pd.to_datetime(df['PaymentS Submitted?'], errors = 'coerce')
+df = df.dropna(subset = ['Grant Req Date', 'Payment Submitted?'])
+
+df['Response Time'] = (df['Payment Submitted?'] - df['Grant Req Date']).dt.days
+                         
 
 st.write("This is still under construction! :building_construction:")
