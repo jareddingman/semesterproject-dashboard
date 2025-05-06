@@ -100,8 +100,8 @@ avgExpense = round(avgExpense, 2)
 #average grant, average expense, patients helped
 
 col1, col2, col3 = st.columns(3)
-col1.metric("Temperature", avgGrant, "1.2 °F")
-col2.metric("Wind", avgExpense, "-8%")
+col1.metric("Average Grant Supplied", avgGrant, "1.2 °F")
+col2.metric("Average Expense by Patient", avgExpense, "-8%")
 col3.metric("Patients Helped", uniCount)
 
 st.subheader("Patient Request Growth")
