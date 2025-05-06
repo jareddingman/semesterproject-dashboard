@@ -108,7 +108,7 @@ df['Age'] = df['DOB'].apply(findage)
 
 
 PendingRows = df[df['Request Status'] == "Pending"]
-PendingRows = df.groupby("Parient ID#")
+PendingRows = df.groupby("Patient ID#")
 GrantReq = PendingRows[['Patient ID#', 'Grant Req Date']]
 #makes the rows into a df in case we need more information about the pending recipients
 #GrantReq isolates the df into patient ID and when they applied for assistance
