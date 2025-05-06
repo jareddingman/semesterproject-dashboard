@@ -13,20 +13,59 @@ import plotly.express as px
 st.set_page_config(page_title='Semester Project')
 uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 # -----------------------------------------------------------------------------
-# Declare some useful functions.
+@st.cache_data
+#gotta finally connect the data folder to analysis
+def getGiturl(owner: str, repo: str, folder: str):
+    contents_api = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
+    resp = requests.get(contents_api)
+    resp.raise_for_status()
+    items = resp.json()
+
+    latest_url = None
+    latest_date = None
+
+    for item in items:
+        if not item["name"].lower().endswith((".csv", ".xlsx")):
+            continue
+        commits_api = (
+            f"https://api.github.com/repos/{owner}/{repo}"
+            f"/commits?path={item['path']}&per_page=1"
+        )
+        cr = requests.get(commits_api)
+        cr.raise_for_status()
+        commits = cr.json()
+        if not commits:
+            continue
+
+        commit_date = datetime.fromisoformat(commits[0]["commit"]["committer"]["date"].replace("Z", ""))
+        if latest_date is None or commit_date > latest_date:
+            latest_date = commit_date
+            latest_url = item["download_url"]
+
+    if latest_url is None:
+        raise RuntimeError(f"No csv/xlsx found in {owner}/{repo}/{folder}")
+    return latest_url
 
 @st.cache_data
-def load_original_data():
-    if uploadedFile == None:
-        url = 'https://raw.githubusercontent.com/jareddingman/semesterproject-dashboard/main/data/UNO%20Service%20Learning%20Data%20Sheet%20De-Identified%20Version(1).xlsx'
-        response = requests.get(url)
-        if response.status_code == 200:
-            return pd.read_excel(url, engine = "openpyxl")
-        else:
-            st.error("Failed to load data from GitHub.")
-            return None
+def loadData():
+    if uploadedFile is not None:
+        return pd.read_excel(uploadedFile) if uploadedFile.name.lower().endswith("xlsx") \
+            else pd.read_csv(uploadedFile)
+
+    owner = "jareddingman"
+    repo = "semesterproject-dashboard"
+    folder = "data"
+
+    download_url = getGiturl(owner, repo, folder)
+    if download_url.lower().endswith("xlsx"):
+        return pd.read_excel(download_url, engine = "openpyxl")
+    else:
+        return pd.read_csv(download_url)
+
+
+df_initial = loadData()
+st.write(f"Loaded {len(df)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
 #-----------------------------------------------------------------------------
-df_initial = load_original_data()
 
 #my addition from positron (not template)
 df = df_initial.drop(columns=["Patient ID#", "App Year", "Remaining Balance", "Request Status", "Pt City", "Pt State", "Pt Zip", "Language", "DOB", "Marital Status", "Gender", "Race", "Hispanic/Latino", "Insurance Type", "Household Size", "Total Household Gross Monthly Income", "Distance roundtrip/Tx", "Type of Assistance (CLASS)",  "Amount", "Payment Method", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
