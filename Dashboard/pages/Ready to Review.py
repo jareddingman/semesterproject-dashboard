@@ -108,7 +108,6 @@ df['Age'] = df['DOB'].apply(findage)
 
 
 PendingRows = df[df['Request Status'] == "Pending"]
-PendingRows = df.groupby("Patient ID#")
 GrantReq = PendingRows[['Patient ID#', 'Grant Req Date']]
 #makes the rows into a df in case we need more information about the pending recipients
 #GrantReq isolates the df into patient ID and when they applied for assistance
@@ -117,6 +116,7 @@ AllUsers = df['Patient ID#'].to_list()
 PendingUsers = PendingRows['Patient ID#'].to_list()
 FirstTenPending = PendingUsers[:10]
 
+PendingRows = df.groupby("Patient ID#")
 
 # -----------------------------------------------------------------------------
 # Draw the actual page
