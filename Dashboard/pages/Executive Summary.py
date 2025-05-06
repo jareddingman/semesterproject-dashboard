@@ -78,7 +78,7 @@ st.write("This summary captures some key points that may be important to NCS HOP
     #say that this is growing, which is exciting
     #but also we need better data as it grows
 
-st.subheader("Patient Growth")
+st.subheader("Patient Request Growth")
 df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
 
