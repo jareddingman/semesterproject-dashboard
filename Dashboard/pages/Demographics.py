@@ -97,6 +97,8 @@ df['Language'] = df['Language'].replace((r'English, Spanish'), value = "", regex
 df['Language'] = df['Language'].replace((r'Karen'), value = "", regex = True)
 df['Language'] = df['Language'].replace((r'somali'), value = "Somali", regex = True)
 
+df['Race'] = df['Race'].replace((r'Whiate'), value = "White", regex = True)
+
 df['Distance roundtrip/Tx'] = df['Distance roundtrip/Tx'].replace((r'[a-zA-Z]+'), value = "", regex = True)
 #makes all distances numbers (might still need to convert to int or float)
 #---------------------------------------------------------
