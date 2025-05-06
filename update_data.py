@@ -20,7 +20,7 @@ def process_data(df):
   df = df.replace(regex=r'(M|m)issing', value="")
   df = df.replace(regex=r'N/A', value = "")
   df = df.dropna()
-  df["updated_at"] = datetiem.utcnow()
+  df["updated_at"] = datetime.utcnow()
   return df
   
 def main():
