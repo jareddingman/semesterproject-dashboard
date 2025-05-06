@@ -64,7 +64,7 @@ def loadData():
 
 
 df_initial = loadData()
-st.write(f"Loaded {len(df)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
+st.write(f"Loaded {len(df_initial)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
 #-----------------------------------------------------------------------------
 #clean/collate data, also make measures
 
