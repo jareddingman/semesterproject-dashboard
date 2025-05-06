@@ -6,14 +6,12 @@ import re
 import requests
 import numpy as np
 
-#be sure to also import the requirements.txt in your terminal
-
-# Set the title and favicon that appear in the Browser's tab bar.
+# Set the title and file uploader
 st.set_page_config(page_title='Semester Project')
 uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 # -----------------------------------------------------------------------------
+#upload git data
 @st.cache_data
-#gotta finally connect the data folder to analysis
 def getGiturl(owner: str, repo: str, folder: str):
     contents_api = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
     resp = requests.get(contents_api)
@@ -63,10 +61,10 @@ def loadData():
 
 
 df_initial = loadData()
-st.write(f"Loaded {len(df)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
+st.write(f"Loaded {len(df_initial)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
+#-------------------------------------------------
+#make some measures/clean data
 
-
-#my addition from positron (not template)
 df = df_initial.drop(columns=["Referred By:", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
 print(df.columns)
 
@@ -109,7 +107,6 @@ df['Age'] = df['DOB'].apply(findage)
 #make an Age column with ages for each recipient (in today's terms)
 
 
-#need to list all "pending" rows in a succinct way for HOPE, filter by needing to sign board members
 PendingRows = df[df['Request Status'] == "Pending"]
 GrantReq = PendingRows[['Patient ID#', 'Grant Req Date']]
 #makes the rows into a df in case we need more information about the pending recipients
@@ -129,7 +126,6 @@ FirstTenPending = PendingUsers[:10]
 
 '''
 
-# Add some spacing
 ''
 ''
 '''
