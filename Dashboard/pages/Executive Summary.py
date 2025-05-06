@@ -93,7 +93,8 @@ uniquePats["Remaining Balance"] = pd.to_numeric(uniquePats["Remaining Balance"],
 avgGrant = (uniquePats['Remaining Balance'].mean())
 avgExpense = (uniquePats['Amount'].mean())
             
-
+avgGrant = round(avgGrant, 2)
+avgExpense = round(avgExpense, 2)
 
 
 #average grant, average expense, patients helped
