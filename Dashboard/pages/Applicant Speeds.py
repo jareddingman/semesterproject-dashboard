@@ -7,14 +7,13 @@ import requests
 import numpy as np
 import plotly.express as px
 
-#be sure to also import the requirements.txt in your terminal
-
-# Set the title and favicon that appear in the Browser's tab bar.
+# set the title and allows file uploading
 st.set_page_config(page_title='Semester Project')
 uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 # -----------------------------------------------------------------------------
+#connects/finds data from github
+
 @st.cache_data
-#gotta finally connect the data folder to analysis
 def getGiturl(owner: str, repo: str, folder: str):
     contents_api = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
     resp = requests.get(contents_api)
@@ -66,8 +65,8 @@ def loadData():
 df_initial = loadData()
 st.write(f"Loaded {len(df_initial)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
 #-----------------------------------------------------------------------------
+#clean data/get useful measures
 
-#my addition from positron (not template)
 df = df_initial.drop(columns=["Patient ID#", "App Year", "Remaining Balance", "Request Status", "Pt City", "Pt State", "Pt Zip", "Language", "DOB", "Marital Status", "Gender", "Race", "Hispanic/Latino", "Insurance Type", "Household Size", "Total Household Gross Monthly Income", "Distance roundtrip/Tx", "Type of Assistance (CLASS)",  "Amount", "Payment Method", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
 print(df.columns)
 #drop everything except for Grant Req Date, and Payment Submitted
@@ -82,6 +81,10 @@ df['Payment Submitted?'] = pd.to_datetime(df['Payment Submitted?'], errors = 'co
 df = df.dropna(subset = ['Grant Req Date', 'Payment Submitted?'])
 
 df['Response Time'] = (df['Payment Submitted?'] - df['Grant Req Date']).dt.days
+
+#------------------------------------------------------------------
+#draw the page
+
 st.title("Application Response Speed")
 '''
 These data were pulled from 'Payment Submitted?' and 'Grant Req Date' columns in the csv/Excel file.
