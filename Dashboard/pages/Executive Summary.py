@@ -7,16 +7,13 @@ import requests
 import numpy as np
 import plotly.express as px
 
-#be sure to also import the requirements.txt in your terminal
-
-# Set the title and favicon that appear in the Browser's tab bar.
+# Set the title and allows file uploading
 st.set_page_config(page_title='Semester Project')
 uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 # -----------------------------------------------------------------------------
-# Declare some useful functions.
+#connects github data folder to data analysis
 
 @st.cache_data
-#gotta finally connect the data folder to analysis
 def getGiturl(owner: str, repo: str, folder: str):
     contents_api = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
     resp = requests.get(contents_api)
@@ -68,21 +65,10 @@ def loadData():
 df = loadData()
 loadSource = uploadedFile.name if uploadedFile and uploadedFile.name else 'Github data folder'
 st.write(f"Loaded {len(df)} rows from {loadSource}.")
-
-#st.write(f"Loaded {len(df)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
-
-
+#-------------------------------------------------------------------
+#data cleaning/getting appropriate measures
 df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
-
-st.title("Executive Summary :briefcase:")
-''
-''
-st.write("This summary captures some key points that may be important to NCS HOPE. At the bottom of this page, there is are data recommendations that might be useful to NCS HOPE.")
-
-#Thinking we say how many applicants we have had, and how many we have fulfilled
-    #say that this is growing, which is exciting
-    #but also we need better data as it grows
 
 uniquePats = df.drop_duplicates(subset = "Patient ID#")
 uniCount = (uniquePats['Request Status'].str.strip().str.lower() == 'approved').sum()
@@ -95,7 +81,12 @@ avgExpense = (uniquePats['Amount'].mean())
             
 avgGrant = round(avgGrant, 2)
 avgExpense = round(avgExpense, 2)
-
+#-------------------------------------------------------------------
+#drawing the page
+st.title("Executive Summary :briefcase:")
+''
+''
+st.write("This summary captures some key points that may be important to NCS HOPE. At the bottom of this page, there is are data recommendations that might be useful to NCS HOPE.")
 
 #average grant, average expense, patients helped
 
