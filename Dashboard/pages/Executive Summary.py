@@ -79,8 +79,8 @@ st.write("This summary captures some key points that may be important to NCS HOP
     #say that this is growing, which is exciting
     #but also we need better data as it grows
 
-uniquePats = df.drop_duplicates(subset = "Patient ID#")
-uniCount = (uniquePats['Request Status'].str.strip().str.lower() == 'approved').sum()
+# uniquePats = df.drop_duplicates(subset = "Patient ID#")
+# uniCount = (uniquePats['Request Status'].str.strip().str.lower() == 'approved').sum()
 
 
 
