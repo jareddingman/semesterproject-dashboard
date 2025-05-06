@@ -14,7 +14,7 @@ def load_latest():
     raise FileNotFound("No data files found in the data folder.")
   latest = max(files, key = lambda f: os.path.getmtime(os.path.join(DATA_DIR, f)))
   path = os.path.join(DATA_DIR, latest)
-  retunr pd.read_excel(path) if latest.endswith("xlsx") else pd.read_csv(path)
+  return pd.read_excel(path) if latest.endswith("xlsx") else pd.read_csv(path)
 
 def process_data(df):
   df = df.replace(regex=r'(M|m)issing', value="")
