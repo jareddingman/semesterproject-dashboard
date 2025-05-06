@@ -86,6 +86,10 @@ st.write("This summary captures some key points that may be important to NCS HOP
 
 uniquePats = df.drop_duplicates(subset = "Patient ID#")
 uniCount = (uniquePats['Request Status'].str.strip().str.lower() == 'approved').sum()
+
+uniquePats["Amount"] = pd.to_numeric(uniquePats["Amount"], errors = "coerce")
+uniquePats["Remaining Balance"] = pd.to_numeric(uniquePats["Remaining Balance"], errors = "coerce")
+
 avgGrant = (uniquePats['Remaining Balance'].mean())
 avgExpense = (uniquePats['Amount'].mean())
             
