@@ -69,20 +69,19 @@ df = loadData()
 st.write(f"Loaded {len(df)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
 
 
-
-
-
-
-
-
-
-
-
-
 st.title("Executive Summary :briefcase:")
 ''
 ''
 st.write("This summary captures some key points that may be important to NCS HOPE. At the bottom of this page, there is are data recommendations that might be useful to NCS HOPE.")
+
+#Thinking we say how many applicants we have had, and how many we have fulfilled
+    #say that this is growing, which is exciting
+    #but also we need better data as it grows
+
+
+
+
+
 
 st.subheader("Recommendations")
 st.write("After Handling this data to create this app, I have a few suggestions for NCS HOPE:")
