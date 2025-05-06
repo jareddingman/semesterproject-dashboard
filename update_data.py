@@ -29,7 +29,7 @@ def main():
   df.to_csv(OUTPUT_FILE, index = False)
   print(f"Updated data saved to {OUTPUT_FILE}")
 
-if __name__ == '__main__":
+if __name__ == "__main__":
   main()
 
 
