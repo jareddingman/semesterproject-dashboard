@@ -81,8 +81,7 @@ st.write("This summary captures some key points that may be important to NCS HOP
 st.subheader("Patient Growth")
 df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
-#if datetime =*/*/2020, then mark year 2020
-df['Year'] = df['Grant Req Date'].dt.year
+
 #note that this will be for unique req dates, not unique patients
 
 fig = px.histogram(df, x="Grant Req Date")
