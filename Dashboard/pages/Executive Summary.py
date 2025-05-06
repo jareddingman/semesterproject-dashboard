@@ -79,15 +79,16 @@ st.write("This summary captures some key points that may be important to NCS HOP
     #say that this is growing, which is exciting
     #but also we need better data as it grows
 
-grouped = df.groupby('Patient ID#')
-unique = grouped['Request Status'].unique().get('Approved')
-sumUni = len(unique)
+uniquePats = df.drop_duplicates(subset = "Patient ID#")
+uniCount = (uniquePats['Request Status'].str.strip().str.lower() == 'approved').sum()
+
+
 
 #average grant, average expense, patients helped
 col1, col2, col3 = st.columns(3)
 col1.metric("Temperature", "70 °F", "1.2 °F")
 col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Patients Helped", sumUni, "4%")
+col3.metric("Patients Helped", uniCount)
 
 st.subheader("Patient Request Growth")
 
