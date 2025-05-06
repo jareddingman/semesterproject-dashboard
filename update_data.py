@@ -3,6 +3,7 @@ import os
 import pandas as pd
 from datetime import datetime
 import regex as re
+import openpyxl
 
 DATA_DIR = "data"
 OUTPUT_FILE = f"{DATA_DIR}/monthly_data.csv"
