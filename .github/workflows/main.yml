@@ -7,8 +7,10 @@ on:
   - cron: '0 0 1 * *'
 jobs:
   run-steamlit:
-    runs on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -16,7 +18,7 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirement.txt
+        pip install -r requirements.txt
     - name: Run App
       run: |
         streamlit run streamlit_app.py
