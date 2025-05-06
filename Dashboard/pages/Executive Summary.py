@@ -87,10 +87,10 @@ df = df.replace(regex=r'N/A', value = "")
 fig = px.histogram(df, x="Grant Req Date")
 fig.update_layout(bargap=0.2)
 st.plotly_chart(fig)
-st.write("Note that this is technically counting the number of patient requests, not new patients")
+st.write("Note that this is technically counting the number of patient requests, not new patients.")
 
 st.subheader("Recommendations")
-st.write("After Handling this data to create this app, I have a few suggestions for NCS HOPE:")
+st.write("After Handling these data to create this app, I have a few suggestions for NCS HOPE:")
 ''
 ''
 '''
