@@ -116,7 +116,6 @@ AllUsers = df['Patient ID#'].to_list()
 PendingUsers = PendingRows['Patient ID#'].to_list()
 FirstTenPending = PendingUsers[:10]
 
-PendingRows = df.groupby("Patient ID#")
 
 # -----------------------------------------------------------------------------
 # Draw the actual page
