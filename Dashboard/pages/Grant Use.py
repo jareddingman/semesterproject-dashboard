@@ -7,18 +7,14 @@ import requests
 import numpy as np
 import plotly.express as px
 
-#be sure to also import the requirements.txt in your terminal
 #I have new appreciation for proper data descriptions
 
-#Create a page showing how many patients did not use their full grant amount in a given application year. 
-#What are the average amounts given by assistance type? This would help us in terms of budgeting and determining future programming needs.
-
-# Set the title and favicon that appear in the Browser's tab bar.
+# Set the title and let the user upload files
 st.set_page_config(page_title='Semester Project')
 uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 # -----------------------------------------------------------------------------
+#get some github data
 @st.cache_data
-#gotta finally connect the data folder to analysis
 def getGiturl(owner: str, repo: str, folder: str):
     contents_api = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
     resp = requests.get(contents_api)
@@ -70,12 +66,10 @@ def loadData():
 df_initial = loadData()
 st.write(f"Loaded {len(df)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
 #-----------------------------------------------------------------------------
+#clean/collate data, also make measures
 
 df = df_initial.replace(regex=r'(M|m)issing', value="")
 df = df_initial.replace(regex=r'N/A', value = "")
-
-
-print(df.columns)
 
 columnNames = ['App Year', 'Patient ID#', 'Remaining Balance', 'Request Status', 'Amount', 'Type of Assistance (CLASS)']
 dfGrant = df[columnNames]
@@ -93,13 +87,6 @@ dfGrant = dfGrant.replace(regex=r'Food/groceries', value = "Food/Groceries")
 
 dfGrant["Amount"] = dfGrant["Amount"].astype(str).str.replace(r"[\$,]", "", regex = True)
 dfGrant["Amount"] = pd.to_numeric(dfGrant["Amount"], errors = "coerce")
-
-#Okay realized something abt the data. There are MULTIPLE INSTANCES of each patient taking out a transaction... So:
-    #Will need to do the following:
-        #Make a new column consolidating each patient ID's Amounts (which is apparently the expenses)
-            #this also means I need to go back to edit the demographics page with this new column instead of the "Amount" column used :(
-        #In the new df w the new column, I need to subtract (not sure if function or not):
-            #Remaining Balance - sum("Amount")
 
 
 amountSum = dfGrant.groupby('Patient ID#')['Amount'].sum().reset_index()
