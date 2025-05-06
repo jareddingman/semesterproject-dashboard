@@ -67,7 +67,8 @@ def loadData():
 
 df = loadData()
 st.write(f"Loaded {len(df)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
-
+df = df.replace(regex=r'(M|m)issing', value="")
+df = df.replace(regex=r'N/A', value = "")
 
 st.title("Executive Summary :briefcase:")
 ''
@@ -78,9 +79,17 @@ st.write("This summary captures some key points that may be important to NCS HOP
     #say that this is growing, which is exciting
     #but also we need better data as it grows
 
+grouped = df.groupby('Patient ID#')
+unique = grouped['Request Status'].unique().get('Approved')
+sumUni = np.sum(unique)
+
+#average grant, average expense, patients helped
+col1, col2, col3 = st.columns(3)
+col1.metric("Temperature", "70 °F", "1.2 °F")
+col2.metric("Wind", "9 mph", "-8%")
+col3.metric("Patients Helped", sumUni, "4%")
+
 st.subheader("Patient Request Growth")
-df = df.replace(regex=r'(M|m)issing', value="")
-df = df.replace(regex=r'N/A', value = "")
 
 #note that this will be for unique req dates, not unique patients
 
