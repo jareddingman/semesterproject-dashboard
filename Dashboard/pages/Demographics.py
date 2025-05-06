@@ -6,16 +6,13 @@ import re
 import requests
 import numpy as np
 
-#be sure to also import the requirements.txt in your terminal
 
-#note to make to NCS HOPE: Update data entry in a format that allows for multiple choice so that English english and ENglish aren't a thing
-
-# Set the title and favicon that appear in the Browser's tab bar.
+# set the title and file upload
 st.set_page_config(page_title='Semester Project')
 uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 # -----------------------------------------------------------------------------
+#get the data
 @st.cache_data
-#gotta finally connect the data folder to analysis
 def getGiturl(owner: str, repo: str, folder: str):
     contents_api = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
     resp = requests.get(contents_api)
@@ -67,8 +64,8 @@ def loadData():
 df_initial = loadData()
 st.write(f"Loaded {len(df_initial)} rows from {uploadedFile.name if uploadedFile else 'GitHub data folder'}.")
 #-----------------------------------------------------------------------------
+#clean lots of data
 
-#my addition from positron (not template)
 df = df_initial.drop(columns=["Referred By:", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
 print(df.columns)
 
@@ -82,7 +79,6 @@ df['Payment Method'] = df['Payment Method'].replace((r'Cc|cc|CC'), value = "CC",
 df['Payment Method'] = df['Payment Method'].replace((r'(PFA GC)|GC|gc|Gc'), value = "GC", regex = True)
 #Payment Method cleaning, only cleaned for CK CC and GC bc these were the only described data in the description doc
 
-#Page2---------------------------------------------------
 df['Insurance Type'] = df['Insurance Type'].replace((r'Uninsurred|Unisured'), value = "Uninsured", regex = True)
 df['Insurance Type'] = df['Insurance Type'].replace((r'Unknown'), value = "", regex = True)
 df['Insurance Type'] = df['Insurance Type'].replace((r'MEdicare|medicare'), value = "Medicare", regex = True)
@@ -101,12 +97,9 @@ df['Language'] = df['Language'].replace((r'English, Spanish'), value = "", regex
 df['Language'] = df['Language'].replace((r'Karen'), value = "", regex = True)
 df['Language'] = df['Language'].replace((r'somali'), value = "Somali", regex = True)
 
-
-
-#---------------------------------------------------------
-
 df['Distance roundtrip/Tx'] = df['Distance roundtrip/Tx'].replace((r'[a-zA-Z]+'), value = "", regex = True)
 #makes all distances numbers (might still need to convert to int or float)
+#---------------------------------------------------------
 
 df['DOB'] = df['DOB'].replace((r'[a-zA-Z]+'), value = "", regex = True)
 #make sure all DOB rows are dates
@@ -167,7 +160,7 @@ df['Age Bracket'] = df['Age'].apply(ageBrack)
 df['Distance'] = df['Distance roundtrip/Tx'].apply(txBrack)
 
 #-------------------------------------------------------------------------
-#page2 goal: to collate amounts with demo info
+#draw the page
 '''
 # Demographic Information
 '''
@@ -182,6 +175,8 @@ Below is a dataframe tool which separates amounts that have been donated by NCS 
 '''
 - The "Total" and "Average" columns are with respect to amounts donated.
 '''
+#make new df with wanted demographics--------------
+
 dfDemo = df.drop(columns=["Age", "App Year", "Pt State", "Pt Zip", "DOB", "Hispanic/Latino", "Grant Req Date"])
 #note to Jared: the hispanic/latino column is not clean AT ALL. some responses were "yes", "hispanic/latino", "Hispanic", etc.
 index_to_drop = dfDemo[dfDemo['Request Status'] == 'Pending'].index
@@ -194,7 +189,7 @@ selectedDemo = st.multiselect("Group by:", demoOptions)
 
 dfDemo["Amount"] = dfDemo["Amount"].astype(str).str.replace(r"[\$,]", "", regex = True)
 dfDemo["Amount"] = pd.to_numeric(dfDemo["Amount"], errors = "coerce")
-
+#------------------------------------------------------
 
 if selectedDemo:
     result_rows = []
