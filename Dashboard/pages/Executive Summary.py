@@ -81,7 +81,7 @@ st.write("This summary captures some key points that may be important to NCS HOP
 
 grouped = df.groupby('Patient ID#')
 unique = grouped['Request Status'].unique().get('Approved')
-sumUni = np.sum(unique)
+sumUni = len(unique)
 
 #average grant, average expense, patients helped
 col1, col2, col3 = st.columns(3)
