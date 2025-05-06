@@ -134,5 +134,3 @@ for col in colsGraph:
 for col in selectedCols:
     dist = px.histogram(filteredDf, x = col, nbins = 20, histnorm = 'probability density', title = f'Distribution of {col}', marginal = 'rug')
     st.plotly_chart(dist, use_container_width = True)
-
-st.write("TO DO for Jared: Edit Deomgraphics page in order to reflect 'together' total and not 'Amount', Finish this page and 5th page, Make sure autoflows work")
