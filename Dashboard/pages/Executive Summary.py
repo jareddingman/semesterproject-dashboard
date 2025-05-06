@@ -86,14 +86,17 @@ st.write("This summary captures some key points that may be important to NCS HOP
 
 uniquePats = df.drop_duplicates(subset = "Patient ID#")
 uniCount = (uniquePats['Request Status'].str.strip().str.lower() == 'approved').sum()
+avgGrant = (uniquePats['Remaining Balance'].mean())
+avgExpense = (uniquePats['Amount'].mean())
+            
 
 
 
 #average grant, average expense, patients helped
 
 col1, col2, col3 = st.columns(3)
-col1.metric("Temperature", "70 °F", "1.2 °F")
-col2.metric("Wind", "9 mph", "-8%")
+col1.metric("Temperature", avgGrant, "1.2 °F")
+col2.metric("Wind", avgExpense, "-8%")
 col3.metric("Patients Helped", uniCount)
 
 st.subheader("Patient Request Growth")
