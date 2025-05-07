@@ -70,7 +70,8 @@ df = df_initial.drop(columns=["Referred By:", "Reason - Pending/No", "Sexual Ori
 print(df.columns)
 
 df["Race"] = df["Race"].astype(str).str.strip().str.normalize('NFKC')
-#this specific line was done to avoid differences that Excel makes in 'General' and 'Number' type cells
+df["Marital Status"] = df["Marital Status"].astype(str).str.strip().str.normalize('NFKC')
+#this was done to avoid differences that Excel makes in 'General' and 'Number' type cells
 
 df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
@@ -105,8 +106,6 @@ df['Race'] = df['Race'].replace((r'American Indian or Alaska Native|American Ind
 
 df['Distance roundtrip/Tx'] = df['Distance roundtrip/Tx'].replace((r'[a-zA-Z]+'), value = "", regex = True)
 #makes all distances numbers (might still need to convert to int or float)
-
-df['Household Size'] = df['Household Size'].replace((r'4602'), value = "", regex = True)
 #---------------------------------------------------------
 
 df['DOB'] = df['DOB'].replace((r'[a-zA-Z]+'), value = "", regex = True)
