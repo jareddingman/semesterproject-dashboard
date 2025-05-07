@@ -69,6 +69,9 @@ st.write(f"Loaded {len(df_initial)} rows from {uploadedFile.name if uploadedFile
 df = df_initial.drop(columns=["Referred By:", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
 print(df.columns)
 
+df["Race"] = df["Race"].astype(str).str.strip().str.normalize('NFKC')
+#this specific line was done to avoid differences that Excel makes in 'General' and 'Number' type cells
+
 df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
 print(df)
@@ -98,7 +101,7 @@ df['Language'] = df['Language'].replace((r'Karen'), value = "", regex = True)
 df['Language'] = df['Language'].replace((r'somali'), value = "Somali", regex = True)
 
 df['Race'] = df['Race'].replace((r'Whiate'), value = "White", regex = True)
-df['Race'] = df['Race'].replace((r'American Indian or Alaska Native'), value = "American Indian or Alaskan Native", regex = True)
+df['Race'] = df['Race'].replace((r'American Indian or Alaska Native|American Indian or Alaksa Native'), value = "American Indian or Alaskan Native", regex = True)
 
 df['Distance roundtrip/Tx'] = df['Distance roundtrip/Tx'].replace((r'[a-zA-Z]+'), value = "", regex = True)
 #makes all distances numbers (might still need to convert to int or float)
