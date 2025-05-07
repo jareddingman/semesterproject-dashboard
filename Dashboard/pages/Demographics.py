@@ -105,6 +105,8 @@ df['Race'] = df['Race'].replace((r'American Indian or Alaska Native|American Ind
 
 df['Distance roundtrip/Tx'] = df['Distance roundtrip/Tx'].replace((r'[a-zA-Z]+'), value = "", regex = True)
 #makes all distances numbers (might still need to convert to int or float)
+
+df['Household Size'] = df['Household Size'].replace((r'4602'), value = "", regex = True)
 #---------------------------------------------------------
 
 df['DOB'] = df['DOB'].replace((r'[a-zA-Z]+'), value = "", regex = True)
