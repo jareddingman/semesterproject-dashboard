@@ -66,6 +66,8 @@ st.write(f"Loaded {len(df_initial)} rows from {uploadedFile.name if uploadedFile
 #-----------------------------------------------------------------------------
 #clean lots of data
 
+df['Marital Status'] = df['Marital Status'].astype(str)
+
 df = df_initial.drop(columns=["Referred By:", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
 print(df.columns)
 
@@ -73,8 +75,6 @@ df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
 print(df)
 #made all Missing or missing becaome nan, 0s will be used for dummy variables like hispanic/not
-
-df['Marital Status'] = df['Marital Status'].astype(str)
 
 df['Payment Method'] = df['Payment Method'].replace((r'((Ck|CK|ck) \d+)|((Ck|CK|ck)\d+)|ck|Ck|CK|check|Check'), value = "CK", regex = True)
 df['Payment Method'] = df['Payment Method'].replace((r'Cc|cc|CC'), value = "CC", regex = True)
