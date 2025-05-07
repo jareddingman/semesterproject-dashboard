@@ -6,6 +6,7 @@ st.set_page_config(
 
 st.title("Semester Project: Main Page :leaves:")
 st.sidebar.success("Select a page above.")
+st.write("JARED TO DO: I need to clean some more demographics. Specifically Medicaid and Medicaid. And American indian/Alaskian)
 
 '''
 Welcome to my semester project for Tools for Quantitative Analysis. This app analyzes and simplifies data from the NCS HOPE foundation. 
