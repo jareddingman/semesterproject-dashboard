@@ -71,6 +71,7 @@ print(df.columns)
 
 df["Race"] = df["Race"].astype(str).str.strip().str.normalize('NFKC')
 df["Marital Status"] = df["Marital Status"].astype(str).str.strip().str.normalize('NFKC')
+df["Insurance Type"] = df["Insurance Type"].astype(str).str.strip().str.normalize('NFKC')
 #this was done to avoid differences that Excel makes in 'General' and 'Number' type cells
 
 df = df.replace(regex=r'(M|m)issing', value="")
