@@ -69,8 +69,6 @@ st.write(f"Loaded {len(df_initial)} rows from {uploadedFile.name if uploadedFile
 df = df_initial.drop(columns=["Referred By:", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
 print(df.columns)
 
-df['Marital Status'] = df['Marital Status'].astype(str)
-
 df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
 print(df)
@@ -90,7 +88,7 @@ df['Insurance Type'] = df['Insurance Type'].replace((r'medicaid'), value = "Medi
 df['Gender'] = df['Gender'].replace((r'MAle|male'), value = "Male", regex = True)
 
 df['Marital Status'] = df['Marital Status'].replace((r'married'), value = "Married", regex = True)
-df['Marital Status'] = df['Marital Status'].replace((r'single|SIngle'), value = "Single", regex = True)
+df['Marital Status'] = df['Marital Status'].replace((r'single|SIngle|Single '), value = "Single", regex = True)
 df['Marital Status'] = df['Marital Status'].replace((r'Seperated|separated'), value = "Separated", regex = True)
 df['Marital Status'] = df['Marital Status'].replace((r'MIssing'), value = "", regex = True)
 
