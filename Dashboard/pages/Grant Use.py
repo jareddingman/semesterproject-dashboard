@@ -85,6 +85,7 @@ dfGrant = dfGrant.replace(regex=r'Phone/internet', value = "Phone/Internet")
 dfGrant = dfGrant.replace(regex=r'Food/groceries', value = "Food/Groceries")
 
 
+#this portion is where I added all the amounts by patient and then subtract from the remaining balance.
 dfGrant["Amount"] = dfGrant["Amount"].astype(str).str.replace(r"[\$,]", "", regex = True)
 dfGrant["Amount"] = pd.to_numeric(dfGrant["Amount"], errors = "coerce")
 
