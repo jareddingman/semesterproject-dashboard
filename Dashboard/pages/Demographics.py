@@ -74,6 +74,8 @@ df = df.replace(regex=r'N/A', value = "")
 print(df)
 #made all Missing or missing becaome nan, 0s will be used for dummy variables like hispanic/not
 
+df['Marital Status'] = df['Marital Status'].astype(str)
+
 df['Payment Method'] = df['Payment Method'].replace((r'((Ck|CK|ck) \d+)|((Ck|CK|ck)\d+)|ck|Ck|CK|check|Check'), value = "CK", regex = True)
 df['Payment Method'] = df['Payment Method'].replace((r'Cc|cc|CC'), value = "CC", regex = True)
 df['Payment Method'] = df['Payment Method'].replace((r'(PFA GC)|GC|gc|Gc'), value = "GC", regex = True)
