@@ -66,10 +66,10 @@ st.write(f"Loaded {len(df_initial)} rows from {uploadedFile.name if uploadedFile
 #-----------------------------------------------------------------------------
 #clean lots of data
 
-df['Marital Status'] = df['Marital Status'].astype(str)
-
 df = df_initial.drop(columns=["Referred By:", "Reason - Pending/No", "Sexual Orientation", "Referred By:", "Patient Letter Notified? (Directly/Indirectly through rep)", "Application Signed?", "Notes", "Payable to:"])
 print(df.columns)
+
+df['Marital Status'] = df['Marital Status'].astype(str)
 
 df = df.replace(regex=r'(M|m)issing', value="")
 df = df.replace(regex=r'N/A', value = "")
