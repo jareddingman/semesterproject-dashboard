@@ -10,5 +10,5 @@ A simple Streamlit app showing some relevant data:
 
 2. Manually go into the "Actions" tab and run the job
 
-3. On the first of everymonth
+3. On the first of every month
 
