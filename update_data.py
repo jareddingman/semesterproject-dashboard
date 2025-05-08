@@ -1,4 +1,4 @@
-#THIS IS NOT ALL MY OWN WORK! https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d and AI helped me enormously with os stuff
+#THIS IS NOT ALL MY OWN WORK! https://gist.github.com/pdashford/2e4bcd4fc2343e2fd03efe4da17f577d and the associated videos helped me enormously with os stuff
 import os
 import pandas as pd
 from datetime import datetime
