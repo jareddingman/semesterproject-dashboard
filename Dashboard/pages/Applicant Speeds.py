@@ -15,8 +15,11 @@ uploadedFile = st.file_uploader("Choose file here:", type = ["csv", "xlsx"])
 
 @st.cache_data
 def getGiturl(owner: str, repo: str, folder: str):
+    token = st.secrets["github"]["token"]
+    headers = {"Authorization": f"token {token}"}
+    
     contents_api = f"https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
-    resp = requests.get(contents_api)
+    resp = requests.get(contents_api, headers = headers)
     resp.raise_for_status()
     items = resp.json()
 
@@ -30,7 +33,7 @@ def getGiturl(owner: str, repo: str, folder: str):
             f"https://api.github.com/repos/{owner}/{repo}"
             f"/commits?path={item['path']}&per_page=1"
         )
-        cr = requests.get(commits_api)
+        cr = requests.get(commits_api, headers = headers)
         cr.raise_for_status()
         commits = cr.json()
         if not commits:
