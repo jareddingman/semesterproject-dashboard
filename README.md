@@ -4,6 +4,8 @@ A simple Streamlit app showing some relevant data:
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://thisismainpage.streamlit.app/)
 
+Please note that this dashboard's data may be removed for confidentiality reasons 
+
 ### This repo is designed to update in the following ways:
 
 1. Whenever data is changed/pushed/deleted in the 'data' folder
